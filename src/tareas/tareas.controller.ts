@@ -7,11 +7,14 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { TareasService } from './tareas.service';
 import { Tarea } from './tarea.schema';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('api/tareas')
+@UseGuards(AuthGuard('jwt')) // Protege todos los endpoints del controlador
 export class TareasController {
   constructor(private readonly tareasService: TareasService) {}
 
