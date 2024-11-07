@@ -8,15 +8,24 @@ import { UsuariosModule } from '../usuarios/usuarios.module';
 
 @Module({
   imports: [
+    // Módulo de usuarios para acceder a la lógica de usuarios
     UsuariosModule,
+
+    // Módulo de Passport para la estrategia de autenticación
     PassportModule,
+
+    // Configuración de JWT para autenticación
     JwtModule.register({
-      secret: 'tu_secreto',
-      signOptions: { expiresIn: '60s' },
+      // Usa una variable de entorno para mayor seguridad
+      secret: process.env.JWT_SECRET || 'mi_secreto_super_seguro', // Cambia 'tu_secreto' a una variable de entorno en producción
+      signOptions: { expiresIn: '60s' }, // Configura el tiempo de expiración del token
     }),
   ],
-  providers: [AuthService, JwtStrategy],
-  controllers: [AuthController],
-  exports: [AuthService],
+  providers: [
+    AuthService, // Servicio de autenticación
+    JwtStrategy, // Estrategia JWT para validación de tokens
+  ],
+  controllers: [AuthController], // Controlador de autenticación
+  exports: [AuthService], // Exporta AuthService para usarlo en otros módulos
 })
 export class AuthModule {}
