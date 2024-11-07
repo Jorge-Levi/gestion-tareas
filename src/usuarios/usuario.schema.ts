@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 
 @Schema()
 export class Usuario extends Document {
-  @Prop({ required: true, unique: true })
+  @Prop({ required: true, unique: true, index: true }) // Agregado el índice
   email: string;
 
   @Prop({ required: true })

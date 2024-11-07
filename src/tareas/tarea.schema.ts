@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 
 @Schema()
 export class Tarea extends Document {
-  @Prop({ required: true })
+  @Prop({ required: true, index: true }) // Agregado el índice
   titulo: string;
 
   @Prop({ required: true })
