@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsOptional, IsDateString } from 'class-validator'; // Importa decoradores para validación
+import { IsString, IsOptional, IsDateString } from 'class-validator';
 
 /**
  * DTO para crear una nueva tarea.
@@ -9,7 +9,7 @@ export class CrearTareaDto {
     description: 'Título de la tarea. Este campo es obligatorio.',
     example: 'Comprar alimentos',
   })
-  @IsString() // Valida que sea una cadena
+  @IsString({ message: 'El título debe ser una cadena de texto.' }) // Valida que sea una cadena
   titulo: string;
 
   @ApiProperty({
@@ -18,11 +18,12 @@ export class CrearTareaDto {
     required: false, // Indica que este campo es opcional
   })
   @IsOptional() // Indica que este campo es opcional
-  @IsString() // Valida que sea una cadena
+  @IsString({ message: 'La descripción debe ser una cadena de texto.' }) // Valida que sea una cadena
   descripcion?: string; // Campo opcional
 
   @ApiProperty({
-    description: 'Fecha de vencimiento de la tarea. Este campo es obligatorio.',
+    description:
+      'Fecha de vencimiento de la tarea en formato YYYY-MM-DD. Este campo es obligatorio.',
     example: '2024-12-31',
   })
   @IsDateString() // Valida que sea una fecha en formato de cadena
@@ -30,12 +31,12 @@ export class CrearTareaDto {
 
   @ApiProperty({
     description:
-      'Estado actual de la tarea. El valor por defecto es "pendiente".',
+      'Estado actual de la tarea. Este campo es opcional. El valor por defecto es "pendiente".',
     default: 'pendiente',
     example: 'pendiente',
   })
   @IsOptional() // Indica que este campo es opcional
-  @IsString() // Valida que sea una cadena
+  @IsString({ message: 'El estado debe ser una cadena de texto.' }) // Valida que sea una cadena
   estado?: string; // Campo opcional
 }
 
@@ -49,7 +50,7 @@ export class ActualizarTareaDto {
     required: false, // Indica que este campo es opcional
   })
   @IsOptional() // Indica que este campo es opcional
-  @IsString() // Valida que sea una cadena
+  @IsString({ message: 'El título debe ser una cadena de texto.' }) // Valida que sea una cadena
   titulo?: string; // Campo opcional
 
   @ApiProperty({
@@ -58,11 +59,12 @@ export class ActualizarTareaDto {
     required: false, // Indica que este campo es opcional
   })
   @IsOptional() // Indica que este campo es opcional
-  @IsString() // Valida que sea una cadena
+  @IsString({ message: 'La descripción debe ser una cadena de texto.' }) // Valida que sea una cadena
   descripcion?: string; // Campo opcional
 
   @ApiProperty({
-    description: 'Fecha de vencimiento de la tarea. Este campo es opcional.',
+    description:
+      'Fecha de vencimiento de la tarea en formato YYYY-MM-DD. Este campo es opcional.',
     example: '2024-12-31',
     required: false, // Indica que este campo es opcional
   })
@@ -72,12 +74,12 @@ export class ActualizarTareaDto {
 
   @ApiProperty({
     description:
-      'Estado actual de la tarea. El valor por defecto es "pendiente".',
+      'Estado actual de la tarea. Este campo es opcional. El valor por defecto es "pendiente".',
     default: 'pendiente',
     example: 'en progreso',
     required: false, // Indica que este campo es opcional
   })
   @IsOptional() // Indica que este campo es opcional
-  @IsString() // Valida que sea una cadena
+  @IsString({ message: 'El estado debe ser una cadena de texto.' }) // Valida que sea una cadena
   estado?: string; // Campo opcional
 }

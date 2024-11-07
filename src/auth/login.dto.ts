@@ -13,7 +13,7 @@ export class LoginDto {
 
   @ApiProperty({
     description:
-      'La contraseña del usuario. Debe contener al menos 8 caracteres.',
+      'La contraseña del usuario. Debe contener al menos 8 caracteres y ser segura.',
     example: 'ContraseñaSegura123', // Ejemplo de uso
   })
   password: string;

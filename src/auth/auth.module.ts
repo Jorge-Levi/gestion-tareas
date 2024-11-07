@@ -18,7 +18,7 @@ import { UsuariosModule } from '../usuarios/usuarios.module';
     JwtModule.register({
       // Usa una variable de entorno para mayor seguridad
       secret: process.env.JWT_SECRET || 'mi_secreto_super_seguro', // Cambia 'tu_secreto' a una variable de entorno en producción
-      signOptions: { expiresIn: '60s' }, // Configura el tiempo de expiración del token
+      signOptions: { expiresIn: '3600s' }, // Configura el tiempo de expiración del token
     }),
   ],
   providers: [
