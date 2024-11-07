@@ -1,35 +1,39 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { UsuariosController } from './usuarios.controller';
-import { UsuariosService } from './usuarios.service';
-import { Usuario } from './usuario.schema';
-import { ConflictException } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing'; // Importa las herramientas de prueba de NestJS
+import { UsuariosController } from './usuarios.controller'; // Importa el controlador de usuarios
+import { UsuariosService } from './usuarios.service'; // Importa el servicio de usuarios
+import { ConflictException } from '@nestjs/common'; // Importa la excepción de conflicto
 
+// Simulación del servicio de usuarios
 const mockUsuariosService = {
-  registrar: jest.fn(),
-  encontrarPorEmail: jest.fn(),
+  registrar: jest.fn(), // Simula el método de registro
+  encontrarPorEmail: jest.fn(), // Simula el método para encontrar usuario por email
 };
 
 describe('UsuariosController', () => {
-  let controller: UsuariosController;
-  let service: UsuariosService;
+  let controller: UsuariosController; // Variable para el controlador
+  let service: UsuariosService; // Variable para el servicio
 
+  // Configuración del módulo de pruebas antes de cada prueba
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [UsuariosController],
-      providers: [{ provide: UsuariosService, useValue: mockUsuariosService }],
+      controllers: [UsuariosController], // Inyecta el controlador
+      providers: [{ provide: UsuariosService, useValue: mockUsuariosService }], // Inyecta el servicio simulado
     }).compile();
 
-    controller = module.get<UsuariosController>(UsuariosController);
-    service = module.get<UsuariosService>(UsuariosService);
+    controller = module.get<UsuariosController>(UsuariosController); // Obtiene una instancia del controlador
+    service = module.get<UsuariosService>(UsuariosService); // Obtiene una instancia del servicio
   });
 
   describe('registrar', () => {
     it('debería registrar un nuevo usuario', async () => {
+      // Simulación de un nuevo usuario
       const usuarioDto = { email: 'test@example.com', password: 'password' };
-      const nuevoUsuario = { ...usuarioDto, _id: '123' }; // Simulando un usuario registrado
+      const nuevoUsuario = { ...usuarioDto, _id: '123' }; // Simula un usuario registrado
 
+      // Configura el retorno simulado del servicio
       mockUsuariosService.registrar.mockResolvedValue(nuevoUsuario);
 
+      // Ejecuta el método de registro y verifica el resultado
       const result = await controller.registrar(usuarioDto);
       expect(result).toEqual(nuevoUsuario);
       expect(mockUsuariosService.registrar).toHaveBeenCalledWith(
@@ -39,12 +43,15 @@ describe('UsuariosController', () => {
     });
 
     it('debería lanzar una excepción si el usuario ya existe', async () => {
+      // Simulación de un usuario existente
       const usuarioDto = { email: 'test@example.com', password: 'password' };
 
+      // Configura el servicio para lanzar una excepción
       mockUsuariosService.registrar.mockRejectedValue(
         new ConflictException('El usuario ya existe'),
       );
 
+      // Verifica que el método lance la excepción esperada
       await expect(controller.registrar(usuarioDto)).rejects.toThrow(
         ConflictException,
       );
