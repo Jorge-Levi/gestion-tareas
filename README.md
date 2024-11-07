@@ -1,99 +1,96 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Gestión de Tareas API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Esta es una API RESTful para gestionar tareas, construida con NestJS y MongoDB. La API permite a los usuarios crear, leer, actualizar y eliminar tareas, así como gestionar la autenticación de usuarios mediante JWT.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Tabla de Contenidos
 
-## Description
+1. Características
+2. Tecnologías Utilizadas
+3. Instalación
+4. Configuración
+5. Uso
+6. Endpoints
+7. Pruebas
+8. Documentación de API
+9. Contribuciones
+10. Licencia
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Características
 
-## Project setup
+* Crear, leer, actualizar y eliminar tareas.
+* Autenticación de usuarios utilizando JWT.
+* Validación de datos y manejo de errores.
+* Documentación de la API generada automáticamente con Swagger.
 
-```bash
-$ npm install
-```
+## Tecnologías Utilizadas
 
-## Compile and run the project
+* NestJS
+* MongoDB
+* TypeScript
+* JWT
+* Swagger
 
-```bash
-# development
-$ npm run start
+## Instalación
 
-# watch mode
-$ npm run start:dev
+1. Clona el repositorio:
+   git clone [https://github.com/tu_usuario/gestion-tareas.git](https://github.com/tu_usuario/gestion-tareas.git)
+2. Navega al directorio del proyecto:
+   cd gestion-tareas
+3. Instala las dependencias:
+   npm install
 
-# production mode
-$ npm run start:prod
-```
+## Configuración
 
-## Run tests
+1. Asegúrate de tener MongoDB instalado y en funcionamiento en tu máquina.
+2. Crea un archivo `.env` en la raíz del proyecto con la siguiente configuración:
+   MONGODB_URI=mongodb://localhost/gestion-tareas
+   (Ajusta la URI según sea necesario para tu configuración de MongoDB).
 
-```bash
-# unit tests
-$ npm run test
+## Uso
 
-# e2e tests
-$ npm run test:e2e
+1. Ejecuta la aplicación:
+   npm run start
+2. Accede a la documentación de la API en [http://localhost:3000/api](http://localhost:3000/api).
+3. Para realizar pruebas en la API, puedes usar herramientas como Postman o Insomnia.
 
-# test coverage
-$ npm run test:cov
-```
+## Endpoints
 
-## Deployment
+### Tareas
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+* POST /api/tareas: Crear una nueva tarea.
+* GET /api/tareas: Listar todas las tareas (soporta paginación).
+* GET /api/tareas/🆔 Obtener una tarea específica.
+* PUT /api/tareas/🆔 Actualizar una tarea existente.
+* DELETE /api/tareas/🆔 Eliminar una tarea.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### Autenticación
 
-```bash
-$ npm install -g mau
-$ mau deploy
-```
+* POST /api/registro: Registrar un nuevo usuario (requiere email y password).
+* POST /api/login: Iniciar sesión y obtener un token JWT.
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## Pruebas
 
-## Resources
+Para ejecutar las pruebas, utiliza el siguiente comando:
 
-Check out a few resources that may come in handy when working with NestJS:
+npm run test
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Las pruebas incluyen tanto pruebas unitarias como de integración para los controladores y servicios de la API.
 
-## Support
+## Documentación de API
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+La documentación de la API está disponible en Swagger. Puedes acceder a ella en [http://localhost:3000/api](http://localhost:3000/api). Aquí encontrarás información detallada sobre los endpoints, parámetros, respuestas y ejemplos de uso.
 
-## Stay in touch
+## Contribuciones
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Las contribuciones son bienvenidas. Si deseas contribuir a este proyecto, por favor sigue estos pasos:
 
-## License
+1. Haz un fork del repositorio.
+2. Crea una nueva rama (git checkout -b feature/nueva-caracteristica).
+3. Realiza tus cambios y haz un commit (git commit -m 'Añadir nueva característica').
+4. Envía un pull request.
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## Licencia
+
+Este proyecto está bajo la Licencia MIT. Para más detalles, consulta el archivo LICENSE.
+
+Asegúrate de personalizar cualquier parte que necesite ajustes específicos, como el enlace del repositorio y la información de la licencia. Si necesitas más modificaciones o información adicional, házmelo saber.
