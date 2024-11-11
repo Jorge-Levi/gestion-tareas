@@ -92,5 +92,3 @@ Las contribuciones son bienvenidas. Si deseas contribuir a este proyecto, por fa
 ## Licencia
 
 Este proyecto está bajo la Licencia MIT. Para más detalles, consulta el archivo LICENSE.
-
-Asegúrate de personalizar cualquier parte que necesite ajustes específicos, como el enlace del repositorio y la información de la licencia. Si necesitas más modificaciones o información adicional, házmelo saber.
